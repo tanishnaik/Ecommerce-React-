@@ -37,7 +37,7 @@ export const ProductCard = ({ product }) => {
         <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform -skew-x-12 translate-x-full group-hover:translate-x-0"></div>
 
         {/* Wishlist Icon */}
-        <button className="absolute top-2 right-2 p-2 rounded-full bg-white/80 backdrop-blur-sm shadow-md transform transition-all duration-300 hover:scale-110 group/wishlist">
+        <button className="absolute top-2 right-2 p-2 rounded-full bg-white/80 backdrop-blur-sm shadow-md transform transition-all duration-300 hover:scale-110 group/wishlist" onClick={()=>navigate("/wishlist")}>
           <svg
             className="w-5 h-5 fill-gray-400 transition-all duration-300 group-hover/wishlist:fill-red-400"
             viewBox="0 0 24 24"
