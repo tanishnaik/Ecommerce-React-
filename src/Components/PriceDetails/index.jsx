@@ -73,7 +73,7 @@ export const PriceDetails = () => {
           <span className="relative z-10 text-lg font-semibold tracking-wide">
             Place Order
           </span>
-          <div className="absolute inset-0 bg-blue-700 transform scale-x-0 group-hover/btn:scale-x-100 origin-left transition-transform duration-500"></div>
+          <div className="absolute inset-0 bg-blue-50-700 transform scale-x-0 group-hover/btn:scale-x-100 origin-left transition-transform duration-500"></div>
           <div className="absolute inset-0 bg-white/30 transform scale-0 group-hover/btn:scale-150 rounded-full transition-transform duration-700"></div>
         </button>
       </div>

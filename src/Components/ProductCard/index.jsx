@@ -1,9 +1,11 @@
 import { useCart } from "../../context/cartContext";
 import {findProductInCart} from "../../utils/findProductInCart";
 import { useNavigate } from "react-router-dom";
+// import {findProductInWishList} from "../../utils/findProductInWishList";
 export const ProductCard = ({ product }) => {
-  const { cart ,cartDispatch } = useCart();
+  const { cart ,wishlist,cartDispatch } = useCart();
   const isProductInCart=findProductInCart(cart,product.id);
+  // const isProductInWishlist=findProductInWishList(wishlist,product.id);
   const navigate=useNavigate();
   const onCartClick = ( product ) => {
     !isProductInCart ?
@@ -12,8 +14,22 @@ export const ProductCard = ({ product }) => {
       payload: { product },
     }) :navigate("/cart")
   };
+  console.log({cart});
+  const onWishListClick=(product)=>{
+    
+   
+    cartDispatch({
+     
+      type:"WISHLIST",
+      payload:{product},
+
+    })
+  };
+  // console.log({wishlist});
 
   return (
+    <>
+   
     <div className="group relative flex flex-col bg-white shadow-lg rounded-xl overflow-hidden transform transition-all duration-300 hover:scale-105 hover:shadow-2xl">
       {/* Animated Background */}
       <div className="absolute inset-0 -z-10 overflow-hidden">
@@ -37,7 +53,7 @@ export const ProductCard = ({ product }) => {
         <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform -skew-x-12 translate-x-full group-hover:translate-x-0"></div>
 
         {/* Wishlist Icon */}
-        <button className="absolute top-2 right-2 p-2 rounded-full bg-white/80 backdrop-blur-sm shadow-md transform transition-all duration-300 hover:scale-110 group/wishlist" onClick={()=>navigate("/wishlist")}>
+        <button className="absolute top-2 right-2 p-2 rounded-full bg-white/80 backdrop-blur-sm shadow-md transform transition-all duration-300 hover:scale-110 group/wishlist" onClick={()=>onWishListClick(product)}>
           <svg
             className="w-5 h-5 fill-gray-400 transition-all duration-300 group-hover/wishlist:fill-red-400"
             viewBox="0 0 24 24"
@@ -94,5 +110,7 @@ export const ProductCard = ({ product }) => {
         </button>
       </div>
     </div>
+    </>
+   
   );
 };

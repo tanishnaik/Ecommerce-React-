@@ -5,7 +5,7 @@ import viteLogo from "/vite.svg";
 import { Route,Routes } from "react-router-dom";
 import { Home } from "./pages/Home";
 import { Cart } from "./pages/Cart";
-// import { Wishlist } from "./pages/Wishlist"
+import { WishList } from "./pages/Wishlist";
 
 function App() {
   return <>
@@ -13,6 +13,8 @@ function App() {
   <Route path="/" element={<Home/>}></Route>
   <Route path="/cart" element={<Cart/>}></Route>
   {/* <Route path="/wishlist"element={<Wishlist/>}></Route> */}
+  {/* <Route path="/wishlist"element={<WishList/>}></Route> */}
+  <Route path="/wishlist" element={<WishList/>}></Route>
   
  </Routes>
   </>;

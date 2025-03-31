@@ -11,6 +11,16 @@ switch(type){
                 ...state,
                 cart:state.cart.filter(product=>product.id !==payload.id)
             }
+            case "WISHLIST":
+                return {
+                    ...state,
+                    wishlist:[...state.wishlist,payload.product]
+                }
+                case "REMOVE_FROM_WISHLIST":
+                    return {
+                        ...state,
+                        wishlist:[...state.wishlist.filter(product=>product.id !==payload.id)]
+                    }
     default :
     return state;
 }

@@ -1,5 +1,6 @@
 import { useCart } from "../../context/cartContext";
 import { useState } from "react";
+import { findProductInCart } from "../../utils/findProductInCart";
 
 const RemoveFromCartIcon = () => (
     <svg
@@ -9,8 +10,18 @@ const RemoveFromCartIcon = () => (
         <path d="M6 7H5v13a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7h-1V4a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1v3zm1-3h10v3H7V4zm2 5h6v10H9V9zm2 2v6h2v-6h-2z" />
     </svg>
 );
+const RemoveFromWishlistIcon = () => (
+    <svg
+        className="w-6 h-6 fill-white transition-all duration-300 group-hover/btn:fill-red-400 group-hover/btn:drop-shadow-[0_0_10px_rgba(255,0,0,0.8)]"
+        viewBox="0 0 24 24"
+    >
+        <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+    </svg>
+);
+
 
 export const HorizontalProductCard = ({ product }) => {
+    const isProductInCart=findProductInCart(product);
     const { cartDispatch } = useCart();
     
     // Initialize quantity state
@@ -22,6 +33,12 @@ export const HorizontalProductCard = ({ product }) => {
             payload: { id: product.id }
         });
     };
+    const onRemoveWishlistClick=(product)=>{
+cartDispatch({
+    type:"REMOVE_FROM_WISHLIST",
+    payload:{id:product.id}
+})
+    }
 
     const handleIncrement = () => {
         setQuantity((prevQuantity) => prevQuantity + 1);
@@ -85,15 +102,25 @@ export const HorizontalProductCard = ({ product }) => {
                 </div>
 
                 {/* CTA Buttons */}
+               
                 <div className="cta-btn flex gap-4 mt-3">
                     <button 
                         onClick={() => onRemoveClick(product)}
-                        className="button hori-btn relative bg-gradient-to-r from-blue-600 to-cyan-500 text-white py-2 px-5 rounded-full flex items-center justify-center gap-2 transition-all duration-500 hover:scale-105 hover:shadow-[0_0_20px_rgba(0,102,255,0.8)]"
+                        className="button horizontal-btn relative bg-gradient-to-r from-blue-600 to-cyan-500 text-white py-2 px-5 rounded-full flex items-center justify-center gap-2 transition-all duration-500 hover:scale-105 hover:shadow-[0_0_20px_rgba(0,102,255,0.8)]"
                     >
                         <RemoveFromCartIcon />
                         <span>Remove From Cart</span>
                     </button>
+                    <button 
+    onClick={() => onRemoveWishlistClick(product)}
+    className="button horizontal-btn relative bg-gradient-to-r from-red-600 to-pink-500 text-white py-2 px-5 rounded-full flex items-center justify-center gap-2 transition-all duration-500 hover:scale-105 hover:shadow-[0_0_20px_rgba(255,0,0,0.8)]"
+>
+    <RemoveFromWishlistIcon />
+    <span>Remove From Wishlist</span>
+</button>
+
                 </div>
+                
             </div>
         </div>
     );
