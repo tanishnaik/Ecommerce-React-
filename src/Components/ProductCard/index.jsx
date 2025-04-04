@@ -24,7 +24,7 @@ export const ProductCard = ({ product }) => {
   console.log({cart});
   const onWishListClick=(product)=>{
 
-    
+    localStorage.setItem("wishlist",JSON.stringify([...wishlist,product]));
    
     cartDispatch({
      
