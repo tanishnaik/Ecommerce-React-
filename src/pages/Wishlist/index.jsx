@@ -3,7 +3,7 @@ import { Navbar } from "../../Components/Navbar";
 import { useCart } from "../../context/cartContext";
 import { HorizontalProductCard } from "../../Components/HorizontalProductCard";
 export const WishList=(product)=>{
-    const {wishlist}=useCart();
+   const {wishlist}=useCart();
     
      return (
         <>
@@ -28,7 +28,7 @@ export const WishList=(product)=>{
               <div className="flex-1 space-y-6">
                 {wishlist?.length > 0 ? (
                   wishlist.map((product) => (
-                    <HorizontalProductCard key={product.id} product={product} />
+                    <HorizontalProductCard key={product.id} product={product} isPresentInWish={()=>checkitems(wishlist,product.id)} />
                   ))
                 ) : (
                   <p className="text-lg text-gray-400 text-center py-10 bg-black/20 rounded-3xl">

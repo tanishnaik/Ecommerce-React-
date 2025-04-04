@@ -3,8 +3,10 @@ import { HorizontalProductCard } from "../../Components/HorizontalProductCard";
 import { useCart } from "../../context/cartContext";
 import { PriceDetails } from "../../Components/PriceDetails/index";
 
+
 export const Cart = () => {
-  const { cart } = useCart();
+  const { cart,wishList } = useCart();
+  
 
   return (
     <>
@@ -29,7 +31,7 @@ export const Cart = () => {
           <div className="flex-1 space-y-6">
             {cart?.length > 0 ? (
               cart.map((product) => (
-                <HorizontalProductCard key={product.id} product={product} />
+                <HorizontalProductCard key={product.id} product={product} isPresent={()=>checkitems(wishList,product.id)} />
               ))
             ) : (
               <p className="text-lg text-gray-400 text-center py-10 bg-black/20 rounded-3xl">

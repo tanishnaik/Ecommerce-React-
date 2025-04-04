@@ -6,6 +6,7 @@ import { Route,Routes } from "react-router-dom";
 import { Home } from "./pages/Home";
 import { Cart } from "./pages/Cart";
 import { WishList } from "./pages/Wishlist";
+import { AuthLogin } from "./pages/Auth";
 
 function App() {
   return <>
@@ -15,6 +16,7 @@ function App() {
   {/* <Route path="/wishlist"element={<Wishlist/>}></Route> */}
   {/* <Route path="/wishlist"element={<WishList/>}></Route> */}
   <Route path="/wishlist" element={<WishList/>}></Route>
+  <Route path="/auth/login" element={<AuthLogin/>}></Route>
   
  </Routes>
   </>;

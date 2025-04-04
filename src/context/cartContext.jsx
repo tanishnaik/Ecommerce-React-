@@ -4,8 +4,9 @@ import { useReducer } from "react";
 import { cartReducer } from "../Reducers/cartReducer";
 const CartContext=createContext();
 const CartProvider=({children})=>{
+    console.log();
     const initialState={
-        cart:[],
+        cart:JSON.parse(localStorage.getItem('cart'))||[],
         wishlist:[],
     }
     const [{cart,wishlist},cartDispatch]=useReducer(cartReducer,initialState);
